@@ -16,11 +16,21 @@ const ai = new GoogleGenAI({
 const GEMINI_MODEL = "gemini-flash-latest"
 
 app.use(express.json());
+app.use(express.static("public"));
 
 const port = 3000;
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`Server berjalan di port ${port}`);
+});
+
+server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+        console.error(`Error: Port ${port} is already in use. Please stop the other process first.`);
+    } else {
+        console.error('Server error:', err);
+    }
+    process.exit(1);
 });
 
 
@@ -92,6 +102,35 @@ app.post("/generate-from-audio", upload.single("audio"), async (req, res) => {
                 { inlineData: { mimeType: req.file.mimetype, data: base64Audio } }
             ],
         });
+        res.status(200).json({ result: response.text });
+    } catch (error) {
+        console.log("Error generating text:", error.message);
+        res.status(500).json({ message: error.message });
+    }
+});
+
+
+app.post("/api/chat", async (req, res) => {
+    try {
+        const { conversation } = req.body;
+
+        if (!Array.isArray(conversation)) {
+            return res.status(400).json({ message: "conversation must be an array" });
+        }
+
+
+        const contents = conversation.map(({ role, text }) => ({ role, parts: [{ text }] }));
+
+
+        const response = await ai.models.generateContent({
+            model: GEMINI_MODEL,
+            contents,
+            config: {
+                temperature: 0.9,
+                systemInstruction: "Jawab hanya dapat menggunakan bahasa Indonesia.",
+            }
+        });
+
         res.status(200).json({ result: response.text });
     } catch (error) {
         console.log("Error generating text:", error.message);
