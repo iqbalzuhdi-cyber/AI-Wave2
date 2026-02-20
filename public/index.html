@@ -1,30 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gemini AI Chatbot</title>
+  <title>Travel IZ | Jelajahi Dunia Bersama Kami</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
 </head>
 
 <body>
-  <!-- Chat Toggle Button -->
+  <!-- Navigation -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">
+      <span>Travel IZ</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li class="dropdown">
+        <a href="#tentang">Tentang ▾</a>
+        <div class="dropdown-content">
+          <a href="#profile">Profile</a>
+          <a href="#syarat">Syarat & Ketentuan</a>
+        </div>
+      </li>
+      <li><a href="#wisata">Galeri</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
+    <button class="mobile-toggle">☰</button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <h1>Petualangan Menanti Anda</h1>
+    <p>Temukan destinasi impian dan buat kenangan tak terlupakan dengan paket perjalanan eksklusif kami.</p>
+    <a href="#wisata" class="btn-primary">Mulai Jelajah</a>
+  </section>
+
+  <!-- WisataSection -->
+  <section id="wisata">
+    <div class="section-title">
+      <h2>Destinasi Pilihan</h2>
+      <p>Pilihan terbaik untuk liburan Anda berikutnya</p>
+    </div>
+    <div class="wisata-grid">
+      <div class="wisata-card">
+        <img src="wisata1.png" alt="Pegunungan" class="wisata-img">
+        <div class="wisata-info">
+          <h3>Puncak Alpen</h3>
+          <p>Nikmati udara segar dan pemandangan salju abadi di pegunungan Alpen yang megah.</p>
+        </div>
+      </div>
+      <div class="wisata-card">
+        <img src="wisata2.png" alt="Candi" class="wisata-img">
+        <div class="wisata-info">
+          <h3>Warisan Budaya</h3>
+          <p>Telusuri sejarah dan arsitektur kuno yang menakjubkan di jantung Asia Tenggara.</p>
+        </div>
+      </div>
+      <div class="wisata-card">
+        <img src="wisata3.png" alt="Kota" class="wisata-img">
+        <div class="wisata-info">
+          <h3>Metropolis Modern</h3>
+          <p>Rasakan denyut kehidupan kota besar dengan lampu neon dan hiburan tanpa henti.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tentang Section -->
+  <section id="tentang">
+    <div class="section-title">
+      <h2>Tentang Kami</h2>
+    </div>
+    <div id="profile" style="margin-bottom: 50px;">
+      <h3>Profile Perusahaan</h3>
+      <p>TravelWave adalah agen perjalanan terkemuka yang berdedikasi untuk memberikan pengalaman wisata yang unik,
+        aman, dan berkesan bagi setiap pelanggan.</p>
+    </div>
+    <div id="syarat">
+      <h3>Syarat & Ketentuan</h3>
+      <p>Kami mengutamakan transparansi. Pastikan Anda membaca kebijakan pembatalan dan asuransi perjalanan kami sebelum
+        melakukan reservasi.</p>
+    </div>
+  </section>
+
+  <!-- Kontak Section -->
+  <section id="kontak">
+    <div class="section-title">
+      <h2>Hubungi Kami</h2>
+      <p>Punya pertanyaan? Kami siap membantu Anda.</p>
+    </div>
+    <div class="contact-container">
+      <form class="contact-form">
+        <div class="form-group">
+          <label>Nama Lengkap</label>
+          <input type="text" name="name" placeholder="Masukkan nama Anda" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="email@contoh.com" required>
+        </div>
+        <div class="form-group">
+          <label>Pesan</label>
+          <textarea name="message" rows="5" placeholder="Tuliskan pesan Anda di sini..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Kirim Pesan</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#wisata">Wisata</a>
+      <a href="#kontak">Kontak</a>
+    </div>
+    <p class="copyright">&copy; 2026 TravelWave. All rights reserved.</p>
+  </footer>
+
+  <!-- RETAINED CHATBOT UI -->
   <div id="chat-toggle" class="chat-toggle">
     <button id="toggle-btn" title="Open Chat">💬</button>
   </div>
 
-  <div id="chat-container" class="container hidden">
+  <div id="chat-container" class="container chatbot-container hidden">
     <div class="chat-header">
-      <h1>Gemini AI Chatbot</h1>
+      <h1>Travel Assistant</h1>
       <button id="minimize-btn" title="Minimize">_</button>
     </div>
     <div id="chat-box" class="chat-box"></div>
     <form id="chat-form">
-      <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" required />
-      <button type="submit">Send</button>
+      <input type="text" id="user-input" placeholder="Tanyakan sesuatu..." autocomplete="off" required />
+      <button type="submit">Kirim</button>
     </form>
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="script.js"></script>
 </body>

@@ -132,7 +132,7 @@ app.post("/api/chat", async (req, res) => {
             contents,
             config: {
                 temperature: 0.9,
-                systemInstruction: "Jawab hanya dapat menggunakan bahasa Indonesia.",
+                systemInstruction: "Jawab dengan gaya bahasa formal/santai dan hanya dapat menggunakan bahasa Indonesia.",
             }
         });
 
