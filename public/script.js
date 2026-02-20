@@ -44,8 +44,8 @@ form.addEventListener('submit', async function (e) {
         // Use marked to parse markdown to HTML
         thinkingElement.innerHTML = marked.parse(data.result);
       }
-      // Add AI response to conversation history
-      conversation.push({ role: 'bot', text: data.result });
+      // Add AI response to conversation history (Gemini uses 'model')
+      conversation.push({ role: 'model', text: data.result });
     } else {
       throw new Error('No result in response');
     }
@@ -57,6 +57,24 @@ form.addEventListener('submit', async function (e) {
       thinkingElement.classList.add('error');
     }
   }
+});
+
+// Toggle Logic
+const chatToggle = document.getElementById('chat-toggle');
+const chatContainer = document.getElementById('chat-container');
+const toggleBtn = document.getElementById('toggle-btn');
+const minimizeBtn = document.getElementById('minimize-btn');
+
+toggleBtn.addEventListener('click', () => {
+  chatContainer.classList.remove('hidden');
+  chatToggle.classList.add('hidden');
+  // Auto focus input
+  input.focus();
+});
+
+minimizeBtn.addEventListener('click', () => {
+  chatContainer.classList.add('hidden');
+  chatToggle.classList.remove('hidden');
 });
 
 /**

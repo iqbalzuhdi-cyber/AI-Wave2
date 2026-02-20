@@ -114,12 +114,17 @@ app.post("/api/chat", async (req, res) => {
     try {
         const { conversation } = req.body;
 
+        console.log(req.body);
+
         if (!Array.isArray(conversation)) {
             return res.status(400).json({ message: "conversation must be an array" });
         }
 
 
-        const contents = conversation.map(({ role, text }) => ({ role, parts: [{ text }] }));
+        const contents = conversation.map(({ role, text }) => ({
+            role: role === "bot" ? "model" : role,
+            parts: [{ text }]
+        }));
 
 
         const response = await ai.models.generateContent({

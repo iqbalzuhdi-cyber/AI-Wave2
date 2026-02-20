@@ -9,8 +9,16 @@
 </head>
 
 <body>
-  <div class="container">
-    <h1>Gemini AI Chatbot</h1>
+  <!-- Chat Toggle Button -->
+  <div id="chat-toggle" class="chat-toggle">
+    <button id="toggle-btn" title="Open Chat">💬</button>
+  </div>
+
+  <div id="chat-container" class="container hidden">
+    <div class="chat-header">
+      <h1>Gemini AI Chatbot</h1>
+      <button id="minimize-btn" title="Minimize">_</button>
+    </div>
     <div id="chat-box" class="chat-box"></div>
     <form id="chat-form">
       <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" required />
